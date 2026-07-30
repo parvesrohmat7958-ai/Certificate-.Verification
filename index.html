@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programming Company - Certificate Verification</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,sans-serif;
+}
+
+body{
+background:linear-gradient(45deg,#001f54,#005eff,#00c6ff);
+background-size:300% 300%;
+animation:bg 8s infinite;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+min-height:100vh;
+}
+
+@keyframes bg{
+50%{
+background-position:100% 50%;
+}
+}
+
+.card{
+width:900px;
+max-width:100%;
+background:#fff;
+border-radius:25px;
+overflow:hidden;
+box-shadow:0 20px 60px rgba(0,0,0,.35);
+}
+
+.header{
+background:#002b80;
+padding:30px;
+text-align:center;
+color:#fff;
+}
+
+.logo{
+width:100px;
+height:100px;
+margin:auto;
+border-radius:50%;
+background:#fff;
+color:#002b80;
+font-size:45px;
+font-weight:bold;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.header h1{
+margin-top:15px;
+font-size:34px;
+}
+
+.header p{
+margin-top:10px;
+}
+
+.verify{
+background:#16a34a;
+padding:15px;
+text-align:center;
+font-size:28px;
+font-weight:bold;
+color:#fff;
+}
+
+.search{
+padding:25px;
+text-align:center;
+}
+
+input{
+width:85%;
+padding:15px;
+font-size:18px;
+border:2px solid #005eff;
+border-radius:10px;
+outline:none;
+}
+
+button{
+margin-top:20px;
+padding:15px 35px;
+background:#005eff;
+color:#fff;
+border:none;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+}
+
+button:hover{
+background:#002b80;
+}
+
+.result{
+display:none;
+margin:20px;
+padding:20px;
+border-radius:15px;
+background:#d1fae5;
+}
+
+.result h2{
+text-align:center;
+color:green;
+margin-bottom:20px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+td{
+padding:12px;
+border-bottom:1px solid #ddd;
+font-size:18px;
+}
+
+td:first-child{
+font-weight:bold;
+color:#002b80;
+width:220px;
+}
+
+.cert-img{
+width:95%;
+display:block;
+margin:25px auto;
+border-radius:15px;
+border:4px solid #005eff;
+}
+
+.error{
+background:#fee2e2;
+color:red;
+text-align:center;
+font-size:20px;
+}
+
+.footer{
+background:#f5f5f5;
+padding:20px;
+text-align:center;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="header">
+
+<div class="logo">PC</div>
+
+<h1>Programming Company</h1>
+
+<p>Premium Certificate Verification Portal</p>
+
+</div>
+
+<div class="verify">
+✅ VERIFIED CERTIFICATE
+</div>
+
+<div class="search">
+
+<input id="certificateID" placeholder="Enter Certificate ID">
+
+<br>
+
+<button onclick="verifyCertificate()">
+Verify Certificate
+</button>
+
+</div>
+
+<div id="result" class="result"></div>
+
+<div class="footer">
+
+<div style="font-size:80px;">🏅</div>
+
+<h3>✍️ Digital Signature</h3>
+
+<p>Director: Muhammad Ali</p>
+
+<br>
+
+<p>🔒 Secure Digital Verification System</p>
+
+<p>© 2026 Programming Company</p>
+
+</div>
+
+</div>
+
+<script>
+
+function verifyCertificate(){
+
+let id=document.getElementById("certificateID").value.trim();
+
+let result=document.getElementById("result");
+
+let data={
+
+"CCA-WEB-2026-00158":{
+
+name:"Md Kayes Hasan",
+
+course:"Web Development",
+
+date:"01 January 2026",
+
+status:  "Successfully Verified",
+
+image:"certificate.jpg"
+
+}
+
+};
+
+
+if(data[id]){
+
+result.style.display="block";
+
+result.className="result";
+
+result.innerHTML=`
+
+<h2>✅ Certificate Verified</h2>
+
+<table>
+
+<tr>
+<td>Holder Name</td>
+<td style="color:green;font-weight:bold;">
+${data[id].name}
+</td>
+</tr>
+
+
+<tr>
+<td>Course</td>
+<td style="color:green;font-weight:bold;">
+${data[id].course}
+</td>
+</tr>
+
+
+<tr>
+<td>Completion Date</td>
+<td style="color:green;font-weight:bold;">
+${data[id].date}
+</td>
+</tr>
+
+
+<tr>
+<td>Status</td>
+<td style="color:green;font-weight:bold;">
+✅ ${data[id].status}
+</td>
+</tr>
+
+
+</table>
+
+
+<img src="${data[id].image}" class="cert-img" alt="Certificate Image">
+
+`;
+
+}else{
+
+
+result.style.display="block";
+
+result.className="result error";
+
+result.innerHTML=`
+
+<h2>❌ Invalid Certificate</h2>
+
+<p>Certificate ID not found.</p>
+
+`;
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>
